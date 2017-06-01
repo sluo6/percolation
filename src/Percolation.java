@@ -10,11 +10,18 @@ public class Percolation extends WeightedQuickUnionUF{
 	 * Each state is indicated by an integer. 
 	 * Blocked (0), Open (1), and Full (2).*/
 	public Percolation(int N) {
+		super((N * N));
+		for (int i = 0; i < N; i++) {
+			union (pl[i], (N + 1));
+		}
+		for (int j = (N * N - 1); j > (N * N - N); j--) {
+			union (pl[j], (N + 2));
+		}
 		if (N <= 0)
 			throw new IllegalArgumentException("N should be larger than 0.");
 		else
 			this.grid_size = N;
-			int array_size = N * N;
+			int array_size = N * N;			
 		    int[] pl = new int[array_size];
 		    for (int i = 0; i < N; i++) {
 			    pl[i] = 0;
@@ -75,7 +82,7 @@ public class Percolation extends WeightedQuickUnionUF{
 		}
 	
 	//return array index of the open neighbor
-		private int open_neighbor_index(int row, int col) throws Exception {
+		private int open_neighbor_index(int row, int col) {
 			int cell_index = index(row, col);
 			int up_index = index((row - 1), col);
 			int down_index = index((row + 1), col);
@@ -90,7 +97,7 @@ public class Percolation extends WeightedQuickUnionUF{
 			if (col != (this.grid_size - 1) && pl[right_index] == 1)
 				return right_index;
 			else
-				throw new Exception("There's no open neighbor.");
+				return cell_index;
 		}
 		
 	//check if there's any full cell in the neighborhood
