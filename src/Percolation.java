@@ -38,16 +38,20 @@ public class Percolation {
 		if (pl[index_to_open] == 0) {
 			pl[index_to_open] = 1;
 			n = n + 1;
-		}		
+		}
+		if (has_full_neighbor(row, col)) {
+			full(row, col);
+		}
 	}
 	
 	//the action of "full" a cell
 	private void full(int row, int col) {
-		
+			int index_to_full = index(row, col);
+			pl[index_to_full] = 2;		
 	}
 	
 	//check if there's any full cell in the neighborhood
-	private boolean full_neighbor(int row, int col) {
+	private boolean has_full_neighbor(int row, int col) {
 		int cell_index = index(row, col);
 		int up_index = index((row - 1), col);
 		int down_index = index((row + 1), col);
