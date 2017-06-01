@@ -38,7 +38,31 @@ public class Percolation {
 		if (pl[index_to_open] == 0) {
 			pl[index_to_open] = 1;
 			n = n + 1;
-		}
+		}		
+	}
+	
+	//the action of "full" a cell
+	private void full(int row, int col) {
+		
+	}
+	
+	//check if there's any full cell in the neighborhood
+	private boolean full_neighbor(int row, int col) {
+		int cell_index = index(row, col);
+		int up_index = index((row - 1), col);
+		int down_index = index((row + 1), col);
+		int left_index = index(row, (col - 1));
+		int right_index = index(row, (col + 1));
+		if (row == 0 || pl[up_index] == 2)
+			return true;
+		if (row != (this.grid_size - 1) && pl[down_index] == 2)
+			return true;
+		if (col != 0 && pl[left_index] == 2)
+			return true;
+		if (col != (this.grid_size - 1) && pl[right_index] == 2)
+			return true;
+		else
+			return false;
 	}
 	
 	// is the site (row, col) open?   
@@ -61,6 +85,7 @@ public class Percolation {
 	public int numberOfOpenSites() {
 		return n;
 	}  
+	
 	
 	// does the system percolate?   
 	public boolean percolates() {
