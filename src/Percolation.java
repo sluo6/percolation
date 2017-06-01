@@ -1,6 +1,6 @@
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
-public class Percolation {
+public class Percolation extends WeightedQuickUnionUF{
 	private static int grid_size;       //grid size
 	private int[] pl;         //array data structure for percolation
 	private int n;        //number of open sites.
@@ -39,6 +39,11 @@ public class Percolation {
 			pl[index_to_open] = 1;
 			n = n + 1;
 		}
+		//if there's a open neighbor, union this cell with the open neighbor
+		if (has_open_neighbor(row, col)) {
+			union(index_to_open, open_neighbor_index(row, col));
+		}
+		//if there's a full neighbor, full the cell
 		if (has_full_neighbor(row, col)) {
 			full(row, col);
 		}
@@ -50,6 +55,44 @@ public class Percolation {
 			pl[index_to_full] = 2;		
 	}
 	
+	//check if there's any open cell in the neighborhood
+		private boolean has_open_neighbor(int row, int col) {
+			int cell_index = index(row, col);
+			int up_index = index((row - 1), col);
+			int down_index = index((row + 1), col);
+			int left_index = index(row, (col - 1));
+			int right_index = index(row, (col + 1));
+			if (row != 0 && pl[up_index] == 1)
+				return true;
+			if (row != (this.grid_size - 1) && pl[down_index] == 1)
+				return true;
+			if (col != 0 && pl[left_index] == 1)
+				return true;
+			if (col != (this.grid_size - 1) && pl[right_index] == 1)
+				return true;
+			else
+				return false;
+		}
+	
+	//return array index of the open neighbor
+		private int open_neighbor_index(int row, int col) throws Exception {
+			int cell_index = index(row, col);
+			int up_index = index((row - 1), col);
+			int down_index = index((row + 1), col);
+			int left_index = index(row, (col - 1));
+			int right_index = index(row, (col + 1));
+			if (row != 0 && pl[up_index] == 1)
+				return up_index;
+			if (row != (this.grid_size - 1) && pl[down_index] == 1)
+				return down_index;
+			if (col != 0 && pl[left_index] == 1)
+				return left_index;
+			if (col != (this.grid_size - 1) && pl[right_index] == 1)
+				return right_index;
+			else
+				throw new Exception("There's no open neighbor.");
+		}
+		
 	//check if there's any full cell in the neighborhood
 	private boolean has_full_neighbor(int row, int col) {
 		int cell_index = index(row, col);
