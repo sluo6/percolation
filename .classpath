@@ -2,18 +2,18 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="F:/java_practice/skeleton-sp16/javalib/algs4.jar"/>
-	<classpathentry kind="lib" path="F:/java_practice/skeleton-sp16/javalib/Automaton-1.3.2-all-deps.jar"/>
-	<classpathentry kind="lib" path="F:/java_practice/skeleton-sp16/javalib/checkstyle-6.15-all.jar"/>
-	<classpathentry kind="lib" path="F:/java_practice/skeleton-sp16/javalib/classmexer.jar"/>
-	<classpathentry kind="lib" path="F:/java_practice/skeleton-sp16/javalib/gjdb.jar"/>
-	<classpathentry kind="lib" path="F:/java_practice/skeleton-sp16/javalib/hamcrest-core-1.3.jar"/>
-	<classpathentry kind="lib" path="F:/java_practice/skeleton-sp16/javalib/Jama-1.0.3.jar"/>
-	<classpathentry kind="lib" path="F:/java_practice/skeleton-sp16/javalib/jh61b.jar"/>
-	<classpathentry kind="lib" path="F:/java_practice/skeleton-sp16/javalib/junit-4.12.jar"/>
-	<classpathentry kind="lib" path="F:/java_practice/skeleton-sp16/javalib/reflections-0.9.9-RC1-uberjar.jar"/>
-	<classpathentry kind="lib" path="F:/java_practice/skeleton-sp16/javalib/stdlib.jar"/>
-	<classpathentry kind="lib" path="F:/java_practice/skeleton-sp16/javalib/stdlib-package.jar"/>
-	<classpathentry kind="lib" path="F:/java_practice/skeleton-sp16/javalib/xchart-2.4.3.jar"/>
+	<classpathentry kind="lib" path="/home/shihui/workspace/skeleton-sp16/javalib/xchart-2.4.3.jar"/>
+	<classpathentry kind="lib" path="/home/shihui/workspace/skeleton-sp16/javalib/stdlib-package.jar"/>
+	<classpathentry kind="lib" path="/home/shihui/workspace/skeleton-sp16/javalib/stdlib.jar"/>
+	<classpathentry kind="lib" path="/home/shihui/workspace/skeleton-sp16/javalib/reflections-0.9.9-RC1-uberjar.jar"/>
+	<classpathentry kind="lib" path="/home/shihui/workspace/skeleton-sp16/javalib/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="/home/shihui/workspace/skeleton-sp16/javalib/jh61b.jar"/>
+	<classpathentry kind="lib" path="/home/shihui/workspace/skeleton-sp16/javalib/Jama-1.0.3.jar"/>
+	<classpathentry kind="lib" path="/home/shihui/workspace/skeleton-sp16/javalib/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="lib" path="/home/shihui/workspace/skeleton-sp16/javalib/gjdb.jar"/>
+	<classpathentry kind="lib" path="/home/shihui/workspace/skeleton-sp16/javalib/classmexer.jar"/>
+	<classpathentry kind="lib" path="/home/shihui/workspace/skeleton-sp16/javalib/checkstyle-6.15-all.jar"/>
+	<classpathentry kind="lib" path="/home/shihui/workspace/skeleton-sp16/javalib/Automaton-1.3.2-all-deps.jar"/>
+	<classpathentry kind="lib" path="/home/shihui/workspace/skeleton-sp16/javalib/algs4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
