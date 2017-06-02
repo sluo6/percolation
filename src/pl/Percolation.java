@@ -2,8 +2,8 @@ package pl;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation extends WeightedQuickUnionUF{
-	private static int grid_size;       //grid size
-	private static int grid_area;     //grid area
+	private int grid_size;       //grid size
+	private int grid_area;     //grid area
 	private int[] pl;         //array data structure for percolation
 	private int n;        //number of open sites.
 	
@@ -35,9 +35,6 @@ public class Percolation extends WeightedQuickUnionUF{
 			}
 	}
 	
-	public Percolation() {
-		this(grid_size);
-	}
 	//helper method to transform row and col info to array index.
 	private int index(int row, int col) {
 		int index = row  * this.grid_size + col;
