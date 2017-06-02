@@ -25,9 +25,11 @@ public class Percolation extends WeightedQuickUnionUF{
 		    }
 			this.pl = pl;
 			this.n = 0;
+			//union top cells with a pseudo cell grid_area + 1.
 			for (int i = 0; i < N; i++) {
 				union (pl[i], (grid_area + 1));
 			}
+			//union bottom cells with a pseudo cell grid_area + 2.
 			for (int j = (N * N - 1); j > (N * N - N); j--) {
 				union (pl[j], (grid_area + 2));
 			}
@@ -51,20 +53,21 @@ public class Percolation extends WeightedQuickUnionUF{
 		}
 		//union left cell
 		int left = left_cellindex(row, col);
-		if (col != 0 && pl[left] !=0 && !connected(index_to_open, left))
-			union(index_to_open, left);
+		if (col != 0 && pl[left] !=0 && !connected(index_to_open, left)) {
+			union(index_to_open, left);}
 		//union right cell
 		int right = right_cellindex(row, col);
-		if (col != grid_size && pl[right] !=0 && !connected(index_to_open, right))
-			union(index_to_open, right);
+		if (col < (grid_size - 1) && pl[right] !=0 && !connected(index_to_open, right)) {
+			union(index_to_open, right);}
 		//union top cell
-		int top = top_cellindex(row, col);
-		if (row != 0 && pl[top] !=0 && !connected(index_to_open, top))
-			union(index_to_open, top);
+		int up = up_cellindex(row, col);
+		if (row != 0 && pl[up] !=0 && !connected(index_to_open, up)) {
+			union(index_to_open, up);}
 		//union bottom cell
-		int bottom = bottom_cellindex(row, col);
-		if (row != grid_size && pl[bottom] !=0 && !connected(index_to_open, bottom))
-			union(index_to_open, bottom);
+		int down = down_cellindex(row, col);
+		if (row < (grid_size - 1) && pl[down] != 0 && !connected(index_to_open, down)) {
+				union(index_to_open, down);}
+		
 		
 		//if there's a full neighbor, full the cell and its union members
 		if (has_full_neighbor(row, col)) {
@@ -97,47 +100,28 @@ public class Percolation extends WeightedQuickUnionUF{
 		return index(row, (col + 1));
 	}
 	
-	private int top_cellindex(int row, int col) {
+	private int up_cellindex(int row, int col) {
 		return index((row - 1), col);
 	}
 	
-	private int bottom_cellindex(int row, int col) {
+	private int down_cellindex(int row, int col) {
 		return index((row + 1), col);
 	}
 	
-	//return array index of the open neighbor
-		private int open_neighbor_index(int row, int col) {
-			int cell_index = index(row, col);
-			int up_index = index((row - 1), col);
-			int down_index = index((row + 1), col);
-			int left_index = index(row, (col - 1));
-			int right_index = index(row, (col + 1));
-			if (row != 0 && pl[up_index] == 1)
-				return up_index;
-			if (row != (this.grid_size - 1) && pl[down_index] == 1)
-				return down_index;
-			if (col != 0 && pl[left_index] == 1)
-				return left_index;
-			if (col != (this.grid_size - 1) && pl[right_index] == 1)
-				return right_index;
-			else
-				return cell_index;
-		}
 		
 	//check if there's any full cell in the neighborhood
 	private boolean has_full_neighbor(int row, int col) {
-		int cell_index = index(row, col);
-		int up_index = index((row - 1), col);
-		int down_index = index((row + 1), col);
-		int left_index = index(row, (col - 1));
-		int right_index = index(row, (col + 1));
-		if (row == 0 || pl[up_index] == 2)
+		int up = up_cellindex(row , col);
+		int down = down_cellindex(row , col);
+		int left = left_cellindex(row, col);
+		int right = right_cellindex(row, col);
+		if (row == 0 || pl[up] == 2)
 			return true;
-		if (row != (this.grid_size - 1) && pl[down_index] == 2)
+		if (row != (this.grid_size - 1) && pl[down] == 2)
 			return true;
-		if (col != 0 && pl[left_index] == 2)
+		if (col != 0 && pl[left] == 2)
 			return true;
-		if (col != (this.grid_size - 1) && pl[right_index] == 2)
+		if (col != (this.grid_size - 1) && pl[right] == 2)
 			return true;
 		else
 			return false;
@@ -167,7 +151,7 @@ public class Percolation extends WeightedQuickUnionUF{
 	
 	// does the system percolate?   
 	public boolean percolates() {
-		return true;
+		return (connected((grid_area + 1), (grid_area + 2)));
 	}           
 	  // public static void main(String[] args)   // unit testing (not required)
 }
