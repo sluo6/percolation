@@ -49,10 +49,23 @@ public class Percolation extends WeightedQuickUnionUF{
 			pl[index_to_open] = 1;
 			n = n + 1;
 		}
-		//if there's a open neighbor, union this cell with the open neighbor
-		if (has_open_neighbor(row, col)) {
-			union(index_to_open, open_neighbor_index(row, col));
-		}
+		//union left cell
+		int left = left_cellindex(row, col);
+		if (col != 0 && pl[left] !=0 && !connected(index_to_open, left))
+			union(index_to_open, left);
+		//union right cell
+		int right = right_cellindex(row, col);
+		if (col != grid_size && pl[right] !=0 && !connected(index_to_open, right))
+			union(index_to_open, right);
+		//union top cell
+		int top = top_cellindex(row, col);
+		if (row != 0 && pl[top] !=0 && !connected(index_to_open, top))
+			union(index_to_open, top);
+		//union bottom cell
+		int bottom = bottom_cellindex(row, col);
+		if (row != grid_size && pl[bottom] !=0 && !connected(index_to_open, bottom))
+			union(index_to_open, bottom);
+		
 		//if there's a full neighbor, full the cell and its union members
 		if (has_full_neighbor(row, col)) {
 			full(row, col);
@@ -62,6 +75,7 @@ public class Percolation extends WeightedQuickUnionUF{
 			}
 			}
 		}
+		
 	}
 	
 	//the action of "full" a cell given coordinates
@@ -75,24 +89,21 @@ public class Percolation extends WeightedQuickUnionUF{
 		pl[index] = 2;
 	}
 	
-	//check if there's any open cell in the neighborhood
-		private boolean has_open_neighbor(int row, int col) {
-			int cell_index = index(row, col);
-			int up_index = index((row - 1), col);
-			int down_index = index((row + 1), col);
-			int left_index = index(row, (col - 1));
-			int right_index = index(row, (col + 1));
-			if (row != 0 && pl[up_index] == 1)
-				return true;
-			if (row != (this.grid_size - 1) && pl[down_index] == 1)
-				return true;
-			if (col != 0 && pl[left_index] == 1)
-				return true;
-			if (col != (this.grid_size - 1) && pl[right_index] == 1)
-				return true;
-			else
-				return false;
-		}
+	private int left_cellindex(int row, int col) {
+		return index(row, (col - 1));
+	}
+	
+	private int right_cellindex(int row, int col) {
+		return index(row, (col + 1));
+	}
+	
+	private int top_cellindex(int row, int col) {
+		return index((row - 1), col);
+	}
+	
+	private int bottom_cellindex(int row, int col) {
+		return index((row + 1), col);
+	}
 	
 	//return array index of the open neighbor
 		private int open_neighbor_index(int row, int col) {
